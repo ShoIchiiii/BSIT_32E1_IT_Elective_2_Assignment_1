@@ -1,0 +1,43 @@
+﻿@model QuizResultViewModel
+@{
+    ViewData["Title"] = "Result";
+}
+
+<h1>Your score: @Model.Score / @Model.Total</h1>
+
+@foreach (var item in Model.Items)
+{
+    var q = item.Question;
+    <section class="card @(item.IsCorrect ? "result-ok" : "result-wrong")">
+        <h2><span class="num">@(q.Number).</span> @q.Text</h2>
+        <p>
+            <strong>Your answer:</strong>
+            @if (item.SelectedKey is null)
+            {
+                <em>(no answer)</em>
+            }
+            else
+            {
+                @item.SelectedKey
+            }
+            @if (item.IsCorrect)
+            {
+                <span class="badge">Correct</span>
+            }
+            else
+            {
+                <span class="badge bad">Incorrect</span>
+            }
+        </p>
+        @if (!item.IsCorrect)
+        {
+            <p><strong>Correct answer:</strong> @(q.CorrectKey)) @q.CorrectAnswerText</p>
+        }
+        <p class="explanation"><strong>Why:</strong> @q.Explanation</p>
+    </section>
+}
+
+<p>
+    <a class="button" asp-controller="Home" asp-action="Quiz">Try again</a>
+    <a class="button secondary" asp-controller="Home" asp-action="Index">View answer key</a>
+</p>

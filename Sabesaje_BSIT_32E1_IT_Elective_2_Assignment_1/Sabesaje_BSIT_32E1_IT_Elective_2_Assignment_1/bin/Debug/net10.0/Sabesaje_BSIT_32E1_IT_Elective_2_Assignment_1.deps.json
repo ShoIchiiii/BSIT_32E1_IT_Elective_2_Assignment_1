@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "Sabesaje_BSIT_32E1_IT_Elective_2_Assignment_1/1.0.0": {
+        "runtime": {
+          "Sabesaje_BSIT_32E1_IT_Elective_2_Assignment_1.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Sabesaje_BSIT_32E1_IT_Elective_2_Assignment_1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

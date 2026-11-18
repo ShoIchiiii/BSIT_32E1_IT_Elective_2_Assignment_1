@@ -1,0 +1,29 @@
+﻿@model List<QuizQuestion>
+@{
+    ViewData["Title"] = "Quiz";
+}
+
+<h1>Quiz</h1>
+<p class="lead">Choose one answer per question, then submit to see your score.</p>
+
+<form method="post" asp-controller="Home" asp-action="Quiz">
+    @foreach (var q in Model)
+    {
+        <section class="card">
+            <h2><span class="num">@(q.Number).</span> @q.Text</h2>
+            <ul class="options choices">
+                @foreach (var o in q.Options)
+                {
+                    <li>
+                        <label>
+                            <input type="radio" name="answers[@q.Number]" value="@o.Key" />
+                            <strong>@(o.Key))</strong> @o.Text
+                        </label>
+                    </li>
+                }
+            </ul>
+        </section>
+    }
+
+    <button type="submit" class="button">Submit answers</button>
+</form>

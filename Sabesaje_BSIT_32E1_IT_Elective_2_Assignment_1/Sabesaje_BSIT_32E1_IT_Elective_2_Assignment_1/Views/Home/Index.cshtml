@@ -1,0 +1,43 @@
+﻿@model IEnumerable<QuizQuestion>
+@{
+    ViewData["Title"] = "Answer Key";
+}
+
+<h1>SSR (MVC) vs. Web API: Answer Key</h1>
+<p class="lead">Each question is shown with its correct answer highlighted and a short explanation.</p>
+
+@foreach (var q in Model)
+{
+    <section class="card">
+        <h2><span class="num">@(q.Number).</span> @q.Text</h2>
+
+        @if (q.HasOptions)
+        {
+            <ul class="options">
+                @foreach (var o in q.Options)
+                {
+                    <li class="@(o.Key == q.CorrectKey ? "correct" : "")">
+                        <strong>@(o.Key))</strong> @o.Text
+                        @if (o.Key == q.CorrectKey)
+                        {
+                            <span class="badge">Correct</span>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="answer-only"><strong>Answer:</strong> <code>@q.CorrectAnswerText</code> <span class="badge">Correct</span></p>
+        }
+
+        <p class="explanation"><strong>Why:</strong> @q.Explanation</p>
+
+        @if (!string.IsNullOrEmpty(q.Note))
+        {
+            <p class="note">@q.Note</p>
+        }
+    </section>
+}
+
+<p><a class="button" asp-controller="Home" asp-action="Quiz">Take the quiz</a></p>
